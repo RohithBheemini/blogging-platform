@@ -1,0 +1,172 @@
+/* ── CSS Variables ─────────────────────────── */
+:root {
+  --ink:         #0f0e0c;
+  --paper:       #f5f0e8;
+  --cream:       #ede8db;
+  --amber:       #c8893a;
+  --amber-dark:  #9e6820;
+  --amber-light: #e8b060;
+  --muted:       #7a7060;
+  --border:      #d5cfc0;
+  --white:       #faf8f3;
+  --danger:      #b84040;
+  --success:     #3a7a50;
+  --shadow-sm:   0 2px 8px rgba(15,14,12,.06);
+  --shadow-md:   0 4px 20px rgba(15,14,12,.1);
+  --shadow-lg:   0 8px 40px rgba(15,14,12,.16);
+  --radius:      8px;
+  --radius-lg:   12px;
+  --transition:  all .18s ease;
+}
+
+/* ── Reset ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+  opacity: .35;
+}
+
+a { text-decoration: none; color: inherit; }
+
+img { max-width: 100%; display: block; }
+
+/* ── Typography ─────────────────────────────── */
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+/* ── Buttons ─────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 20px; border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif; font-size: .875rem; font-weight: 500;
+  cursor: pointer; border: none; transition: var(--transition);
+  letter-spacing: .01em; white-space: nowrap;
+}
+.btn:disabled { opacity: .55; cursor: not-allowed; transform: none !important; }
+
+.btn-primary   { background: var(--ink); color: var(--paper); }
+.btn-primary:hover:not(:disabled) { background: #2a2820; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,14,12,.25); }
+
+.btn-amber     { background: var(--amber); color: #fff; }
+.btn-amber:hover:not(:disabled) { background: var(--amber-dark); transform: translateY(-1px); }
+
+.btn-outline   { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+.btn-outline:hover:not(:disabled) { border-color: var(--ink); background: var(--cream); }
+
+.btn-ghost     { background: transparent; color: var(--muted); padding: 6px 12px; }
+.btn-ghost:hover:not(:disabled) { color: var(--ink); background: var(--cream); }
+
+.btn-danger    { background: transparent; color: var(--danger); border: 1.5px solid transparent; padding: 6px 14px; }
+.btn-danger:hover:not(:disabled) { background: #fdf0f0; border-color: var(--danger); }
+
+.btn-sm        { padding: 5px 13px; font-size: .8rem; }
+.btn-lg        { padding: 12px 28px; font-size: 1rem; }
+.btn-full      { width: 100%; justify-content: center; }
+
+/* ── Form Controls ───────────────────────────── */
+.form-group    { margin-bottom: 1.25rem; }
+.form-label    {
+  display: block; font-size: .75rem; font-weight: 500; color: var(--muted);
+  margin-bottom: 5px; text-transform: uppercase; letter-spacing: .06em;
+  font-family: 'DM Mono', monospace;
+}
+.form-input, .form-textarea, .form-select {
+  width: 100%; padding: 10px 14px;
+  border: 1.5px solid var(--border); border-radius: var(--radius);
+  background: var(--white); color: var(--ink);
+  font-family: 'DM Sans', sans-serif; font-size: .95rem;
+  transition: border-color .15s, box-shadow .15s; outline: none;
+}
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(200,137,58,.12);
+}
+.form-textarea { resize: vertical; min-height: 140px; line-height: 1.6; }
+.form-error    { color: var(--danger); font-size: .82rem; margin-top: 5px; }
+.form-hint     { color: var(--muted);  font-size: .82rem; margin-top: 4px; }
+
+/* ── Cards ───────────────────────────────────── */
+.card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Chip / Badge ────────────────────────────── */
+.chip {
+  display: inline-block;
+  font-family: 'DM Mono', monospace; font-size: .7rem;
+  padding: 4px 12px; border-radius: 20px;
+  border: 1.5px solid var(--border); cursor: pointer;
+  transition: var(--transition); color: var(--muted);
+  text-transform: uppercase; letter-spacing: .06em; background: transparent;
+}
+.chip:hover, .chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.badge {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  padding: 2px 8px; border-radius: 20px; text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.badge-amber { background: var(--amber); color: #fff; }
+
+/* ── Avatar ──────────────────────────────────── */
+.avatar {
+  display: grid; place-items: center; border-radius: 50%; flex-shrink: 0;
+  background: var(--ink); color: var(--amber);
+  font-weight: 700; font-family: 'DM Mono', monospace;
+}
+.avatar-sm  { width: 28px; height: 28px; font-size: .7rem;  }
+.avatar-md  { width: 40px; height: 40px; font-size: .95rem; }
+.avatar-lg  { width: 60px; height: 60px; font-size: 1.35rem; }
+.avatar-xl  { width: 80px; height: 80px; font-size: 1.75rem; }
+
+/* ── Divider ──────────────────────────────────── */
+.divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 1.5rem 0; color: var(--muted); font-size: .8rem;
+}
+.divider::before, .divider::after { content: ''; flex: 1; border-top: 1px solid var(--border); }
+
+/* ── Spinner ──────────────────────────────────── */
+.spinner {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 2.5px solid var(--border); border-top-color: var(--amber);
+  animation: spin .65s linear infinite; display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Animations ───────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.fade-up { animation: fadeUp .35s ease forwards; }
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--paper); }
+::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ── Utility ─────────────────────────────────── */
+.mono { font-family: 'DM Mono', monospace; }
+.serif { font-family: 'Playfair Display', serif; }
+.text-muted  { color: var(--muted); }
+.text-amber  { color: var(--amber); }
+.text-danger { color: var(--danger); }
+.text-sm     { font-size: .875rem; }
+.text-xs     { font-size: .78rem; }
