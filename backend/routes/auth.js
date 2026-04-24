@@ -22,13 +22,15 @@ router.post('/register', async (req, res) => {
     }
 
     const user = new User({ username, email, password });
+    console.log('About to save user:', { username, email });
     await user.save();
+    console.log('User saved successfully:', user._id);
 
     const token = jwt.sign({ id: user._id, username: user.username }, SECRET, { expiresIn: '7d' });
     res.json({ token, user: { id: user._id, username: user.username, email: user.email } });
   } catch (err) {
-    console.error('Register error:', err);
-    res.status(500).json({ error: 'Failed to register' });
+    console.error('Register error:', err.message, err.stack);
+    res.status(500).json({ error: 'Failed to register', details: err.message });
   }
 });
 

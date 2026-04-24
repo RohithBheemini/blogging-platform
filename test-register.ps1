@@ -1,2 +1,2 @@
 $body = @{username='testuser999'; email='testuser999@example.com'; password='testpass999'} | ConvertTo-Json
-Invoke-RestMethod -Uri 'http://localhost:5000/api/auth/register' -Method POST -ContentType 'application/json' -Body $body
+Invoke-RestMethod -Uri 'http://localhost:5000/api/auth/register' -Method POST -ContentType 'application/json' -Body $body -ErrorAction Stop

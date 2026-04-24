@@ -9,10 +9,9 @@ const UserSchema = new mongoose.Schema({
   bio:      { type: String, default: '' },
 }, { timestamps: true });
 
-UserSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next();
+UserSchema.pre('save', async function() {
+  if (!this.isModified('password')) return;
   this.password = await bcrypt.hash(this.password, 10);
-  next();
 });
 
 module.exports = mongoose.model('User', UserSchema);
