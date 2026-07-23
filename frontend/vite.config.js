@@ -19,9 +19,7 @@ export default defineConfig({
     minify: 'terser',
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          axios: ['axios'],
+        
         },
       },
     },
